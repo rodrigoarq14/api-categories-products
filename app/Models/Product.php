@@ -14,4 +14,10 @@ class Product extends Model
     protected $fillable = ['name', 'description', 'price', 'stock', 'category_id'];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    protected $casts = [
+        'price' => 'float',
+        'stock' => 'integer',
+        'category_id' => 'integer'
+    ];
 }
