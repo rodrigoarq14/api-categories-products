@@ -13,11 +13,24 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('category')->get();
+
+        $formattedProducts = $products->map(function ($product) {
+            return [
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'price' => $product->price,
+                'stock' => $product->stock,
+                'category_id' => $product->category_id,
+                'category_name' => $product->category->name
+            ];
+        });
+
         return response()->json([
             'success' => true,
             'message' => 'Products data retrieved successfully.',
-            'data' => $products
+            'data' => $formattedProducts
         ], HttpResponseStatusCode::HTTP_OK);
     }
 
@@ -39,19 +52,31 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::find($id);
-        if ($product) {
+        $product = Product::with('category')->find($id);
+        
+        if (!$product) {
             return response()->json([
-                'success' => true,
-                'message' => 'Product data retrieved successfully.',
-                'data' => $product
-            ], HttpResponseStatusCode::HTTP_OK);
+                'success' => false,
+                'message' => 'Product data not found.',
+                'data' => null
+            ], HttpResponseStatusCode::HTTP_NOT_FOUND);
         }
+
+        $formattedProduct = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'description' => $product->description,
+            'price' => $product->price,
+            'stock' => $product->stock,
+            'category_id' => $product->category_id,
+            'category_name' => $product->category->name
+        ];
+
         return response()->json([
-            'success' => false,
-            'message' => 'Product data not found.',
-            'data' => null
-        ], HttpResponseStatusCode::HTTP_NOT_FOUND);
+            'success' => true,
+            'message' => 'Product data retrieved successfully.',
+            'data' => $formattedProduct
+        ], HttpResponseStatusCode::HTTP_OK);
     }
 
     /**
@@ -87,18 +112,18 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::find($id);
-        if ($product) {
-            $product->delete();
+        if (!$product) {
             return response()->json([
-                'success' => true,
-                'message' => 'Product data deleted successfully.',
-                'data' => $product
-            ], HttpResponseStatusCode::HTTP_OK);
+                'success' => false,
+                'message' => 'Product data not found.',
+                'data' => null
+            ], HttpResponseStatusCode::HTTP_NOT_FOUND);
         }
+        $product->delete();
         return response()->json([
-            'success' => false,
-            'message' => 'Product data not found.',
+            'success' => true,
+            'message' => 'Product data deleted successfully.',
             'data' => null
-        ], HttpResponseStatusCode::HTTP_NOT_FOUND);
+        ], HttpResponseStatusCode::HTTP_OK);
     }
 }

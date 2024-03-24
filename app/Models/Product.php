@@ -20,4 +20,9 @@ class Product extends Model
         'stock' => 'integer',
         'category_id' => 'integer'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
