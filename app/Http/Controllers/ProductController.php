@@ -13,24 +13,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->get();
-
-        $formattedProducts = $products->map(function ($product) {
-            return [
-                'id' => $product->id,
-                'name' => $product->name,
-                'description' => $product->description,
-                'price' => $product->price,
-                'stock' => $product->stock,
-                'category_id' => $product->category_id,
-                'category_name' => $product->category->name
-            ];
-        });
+        $products = Product::select('products.id', 'products.name', 'products.description', 'products.price', 'products.stock', 'products.category_id', 'categories.name as category_name')
+            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            ->whereNull('products.deleted_at')
+            ->whereNull('categories.deleted_at')
+            ->get();
 
         return response()->json([
             'success' => true,
             'message' => 'Products data retrieved successfully.',
-            'data' => $formattedProducts
+            'data' => $products
         ], HttpResponseStatusCode::HTTP_OK);
     }
 

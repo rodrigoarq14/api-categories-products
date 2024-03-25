@@ -16,8 +16,11 @@ class DashboardController extends Controller
     public function index()
     {        
         $dataResponse = [
-            'category_count' => Category::count(),
-            'product_count' =>  Product::count()
+            'category_count' => Category::whereNull('deleted_at')->count(),
+            'product_count' =>  Product::leftJoin('categories', 'products.category_id', '=', 'categories.id')
+                ->whereNull('products.deleted_at')
+                ->whereNull('categories.deleted_at')
+                ->count(),
         ];
 
         return response()->json([
