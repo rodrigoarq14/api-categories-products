@@ -60,6 +60,6 @@ In addition to the RESTful API, there is a frontend project developed in React t
 
 ### Postman Requests Collection
 
-En la raíz de este proyecto, encontrarás un archivo JSON que contiene una colección de solicitudes de Postman. Esta colección proporciona una serie de solicitudes predefinidas que puedes importar en la herramienta Postman para probar fácilmente la API RESTful de Categorías y Productos. La colección incluye solicitudes para operaciones CRUD (Crear, Leer, Actualizar, Eliminar) tanto para categorías como para productos.
+At the root of this project, you will find a JSON file that contains a collection of Postman requests. This collection provides a series of predefined requests that you can import into the Postman tool to easily test the CRUD operations for both categories and products in the RESTful API.
 
 If you want to test the API requests using Postman, you can import this JSON file into your Postman instance and start making requests to the API immediately.
