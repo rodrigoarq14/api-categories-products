@@ -18,7 +18,7 @@ In development. 🚀
 ## Steps to Start the Project 🚶
 
 
-### 1. Clone the GitHub repository of the project
+### 1.- Clone the GitHub repository of the project
 
 ```bash
 git clone https://github.com/rodrigoarq14/api-categories-products.git
