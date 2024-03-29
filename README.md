@@ -63,3 +63,7 @@ In addition to the RESTful API, there is a frontend project developed in React t
 At the root of this project, you will find a JSON file that contains a collection of Postman requests. This collection provides a series of predefined requests that you can import into the Postman tool to easily test the CRUD operations for both categories and products in the RESTful API.
 
 If you want to test the API requests using Postman, you can import this JSON file into your Postman instance and start making requests to the API immediately.
+
+## How to Contribute 🫱
+
+If you'd like to contribute to this project, please fork the repository and submit a pull request with your changes. Feel free to open an issue if you encounter any bugs or have suggestions for improvements.
