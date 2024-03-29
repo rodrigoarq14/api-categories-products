@@ -1,6 +1,6 @@
 # RESTful API - CRUD Categories and Products
 
-By 👨‍💻 [rodrigoarq14](https://github.com/rodrigoarq14)
+Developed By 👨‍💻 [rodrigoarq14](https://github.com/rodrigoarq14)
 
 ## Project Status
 
