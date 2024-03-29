@@ -50,7 +50,7 @@ php artisan db:seed
 php artisan serve
 ```
 
-## Additional Information
+## Additional Information ➕
 
 ### Frontend Project in React
 
